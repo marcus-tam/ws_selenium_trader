@@ -66,7 +66,9 @@ Template provided by othneildrew/Best-README-Template
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-    Basic selenium application to trade stocks on WealthSimple. This is meant to be a personal application, but feel free to use and modify. This application is for education purposes.
+    Basic selenium application to trade stocks on WealthSimple.
+    This is meant to be a personal application, but feel free to use and modify.
+    This application is for education purposes.
 
 ### Built With
 
@@ -171,5 +173,6 @@ Project Link: [https://github.com/marcus-tam/ws_selenium_trader](https://github.
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
 [issues-url]: https://github.com/marcus-tam/ws_selenium_trader/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/marcus-tam/ws_selenium_trader/blob/master/LICENSE.txt
+[license-url]: https://github.com/marcus-tam/ws_selenium_trader/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/marcus-tam-256149199/
