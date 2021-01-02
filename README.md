@@ -164,15 +164,15 @@ Project Link: [https://github.com/marcus-tam/ws_selenium_trader](https://github.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/marcus-tam/ws_selenium_trader.svg?style=for-the-badge
 [contributors-url]: https://github.com/marcus-tam/ws_selenium_trader/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/marcus-tam/ws_selenium_trader.svg?style=for-the-badge
 [forks-url]: https://github.com/marcus-tam/ws_selenium_trader/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/marcus-tam/ws_selenium_trader.svg?style=for-the-badge
 [stars-url]: https://github.com/marcus-tam/ws_selenium_trader/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/marcus-tam/ws_selenium_trader.svg?style=for-the-badge
 [issues-url]: https://github.com/marcus-tam/ws_selenium_trader/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/marcus-tam/ws_selenium_trader.svg?style=for-the-badge
 [license-url]: https://github.com/marcus-tam/ws_selenium_trader/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/marcus-tam-256149199/
