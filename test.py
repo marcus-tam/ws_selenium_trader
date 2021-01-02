@@ -1,1 +1,0 @@
-# Regular tests to perform
