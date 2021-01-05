@@ -269,7 +269,7 @@ class ws_bot():
         sleep(8)
 
         # BUY / SELL -> BUY
-        buy_order_button_xpath = 'PLACEHOLDER'
+        buy_order_button_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[1]/button[1]'
         self.driver.find_element_by_xpath(buy_order_button_xpath).click()
         sleep(1)
 
@@ -278,18 +278,18 @@ class ws_bot():
         # To specify which account to use. Will default to TFSA.
 
         # Order Type ... Limit BUY
-        limit_buy_dropdown_xpath = 'PLACEHOLDER'
+        limit_buy_dropdown_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/div[2]/div[2]/select/option[2]'
         self.driver.find_element_by_xpath(limit_buy_dropdown_xpath).click()
         sleep(1)
 
         # Highest Price Per Share You'd BUY
-        highest_pps_xpath = 'PLACEHOLDER'
+        highest_pps_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/div[3]/div/div/input'
         self.driver.find_element_by_xpath(highest_pps_xpath).send_keys(
             self.buy_price)
         sleep(1)
 
         # How many Shares
-        shares_quantity_xpath = 'PLACEHOLDER'
+        shares_quantity_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div[2]/input'
         self.driver.find_element_by_xpath(shares_quantity_xpath).send_keys(
             self.current_shares)
         sleep(4)
