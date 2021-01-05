@@ -57,8 +57,7 @@ class SearchText(unittest.TestCase):
         self.driver.quit()
 
 
-if __name__ == '__main__':
-    test = SearchText()
-    test.setUp()
-    test.get_login_credentials_fail()
-    test.tearDown()
+test = SearchText()
+test.setUp()
+test.get_login_credentials_fail()
+test.tearDown()
