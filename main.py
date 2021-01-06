@@ -403,6 +403,7 @@ class ws_bot():
     def pending(self):
         # Pseudocode:
         # NOTE: This code should ALWAYS execute after limit_buy and limit_sell.
+        # TODO:
         # Navigate to pending page
         # while
         # Every minute or something check if the first xpath says pending
