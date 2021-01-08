@@ -18,7 +18,6 @@ import ws_bot_discord as dns  #discord notification system
 # test.py
 # in tfa() -> tick 30 days (or maybe have that as option)
 # in trading_tab() -> consider the URL switching as opposed to
-# Instead of sleeps, use implicit waits
 # Figure out way to get stock_high and stock_low to match self.buy_price and self.sell_price (use yahoo_fin?)
 # Could be issue with 15 minute delay on WealthSimple?
 # settings.py -> secrets.py? Seems excessive with .env but more secure???
@@ -88,7 +87,7 @@ class ws_bot():
         self.driver.get("https://my.wealthsimple.com/app/login?locale=en-ca")
         username = settings.WS_USERNAME
         password = settings.WS_PASSWORD
-        sleep(8)
+        self.driver.implicitly_wait(8)
 
         # Email
         self.driver.find_element_by_xpath(
@@ -107,7 +106,7 @@ class ws_bot():
             "/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/layout/div/main/login-wizard/wizard/div/div/ng-transclude/form/ws-micro-app-loader/login-form/span/div/div/div/div/div/div[5]/button"
         ).click()
         print("Submit form...")
-        sleep(8)
+        self.driver.implicitly_wait(8)
 
         try:
             ws_bot.two_factor_auth(self)
@@ -117,7 +116,7 @@ class ws_bot():
         finally:
             if self.discord == True:
                 dns.discord_message("Logged into WealthSimple!")
-            sleep(4)
+            self.driver.implicitly_wait(4)
 
     def two_factor_auth(self):
         """
@@ -138,7 +137,7 @@ class ws_bot():
         ).click()
 
         #TODO: Tick remember me for 30 days
-        sleep(8)
+        self.driver.implicitly_wait(8)
         print("Login Successful!")
         ws_bot.trading_tab(self)
 
@@ -153,7 +152,7 @@ class ws_bot():
         self.driver.find_element_by_xpath(
             '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-product-switcher-breather-component/ws-micro-app-loader/product-switcher-breather/span/div/div/div/div/div[3]/button'
         ).click()
-        sleep(8)
+        self.driver.implicitly_wait(8)
         print("Entered trading page!")
 
     def get_stock(self):
@@ -167,13 +166,13 @@ class ws_bot():
         #Search bar xpath
         sb_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/header-component/header/ws-micro-app-loader[1]/page-header/span/div/div[2]/div/div[1]/div[2]/input'
         self.driver.find_element_by_xpath(sb_xpath).send_keys(STOCK_TICKER)
-        sleep(3)
+        self.driver.implicitly_wait(3)
 
         # From search, Pick First entry, then enter.
         self.driver.find_element_by_xpath(sb_xpath).send_keys(Keys.DOWN)
-        sleep(3)
+        self.driver.implicitly_wait(3)
         self.driver.find_element_by_xpath(sb_xpath).send_keys(Keys.ENTER)
-        sleep(3)
+        self.driver.implicitly_wait(3)
 
         print(f"Directed to {STOCK_TICKER} page")
         # TODO: Please check this once I land
@@ -260,15 +259,14 @@ class ws_bot():
 
         # ws_bot.get_stock(self)
         # TODO: Temporary -- Adds robustness atm, looking for cleaner execution
-        self.driver.get(
-            'https://my.wealthsimple.com/app/trade/security/sec-s-a124b41224594fa48f2a8498be43d100'
-        )
-        sleep(8)
+
+        self.driver.get(self.stock_ticker_url)
+        self.driver.implicitly_wait(8)
 
         # BUY / SELL -> BUY
         buy_order_button_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[1]/button[1]'
         self.driver.find_element_by_xpath(buy_order_button_xpath).click()
-        sleep(1)
+        self.driver.implicitly_wait(1)
 
         # TODO: Must find which account to use to buy stocks. Personal or otherwise.
         # In this scenario, we could set an init attibute called account_type
@@ -277,34 +275,34 @@ class ws_bot():
         # Order Type ... Limit BUY
         limit_buy_dropdown_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/div[2]/div[2]/select/option[2]'
         self.driver.find_element_by_xpath(limit_buy_dropdown_xpath).click()
-        sleep(1)
+        self.driver.implicitly_wait(1)
 
         # Highest Price Per Share You'd BUY
         highest_pps_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/div[3]/div/div/input'
         self.driver.find_element_by_xpath(highest_pps_xpath).send_keys(
             self.buy_price)
-        sleep(1)
+        self.driver.implicitly_wait(1)
 
         # How many Shares
         shares_quantity_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div[2]/input'
         self.driver.find_element_by_xpath(shares_quantity_xpath).send_keys(
             self.current_shares)
-        sleep(4)
+        self.driver.implicitly_wait(4)
 
         # Scroll to bottom script
         self.driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
-        sleep(3)
+        self.driver.implicitly_wait(3)
 
         # Sell Stock
         sell_stock_button_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/button'
         self.driver.find_element_by_xpath(sell_stock_button_xpath).click()
-        sleep(8)
+        self.driver.implicitly_wait(8)
 
         place_order_button_xpath = '/html/body/span/div/div/div[2]/div/div[4]/div/button[1]'
         self.driver.find_element_by_xpath(place_order_button_xpath).click()
 
-        sleep(8)
+        self.driver.implicitly_wait(8)
         # view_order_status_xpath = '/html/body/span/div/div/div[2]/div/button[2]'
         # self.driver.find_element_by_xpath(view_order_status_xpath).click()
 
@@ -344,45 +342,45 @@ class ws_bot():
         self.driver.get(
             'https://my.wealthsimple.com/app/trade/security/sec-s-a124b41224594fa48f2a8498be43d100'
         )
-        sleep(8)
+        self.driver.implicitly_wait(8)
 
         # BUY / SELL -> SELL
         sell_order_button_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[1]/button[2]'
         self.driver.find_element_by_xpath(sell_order_button_xpath).click()
-        sleep(1)
+        self.driver.implicitly_wait(1)
 
         # Order Type ... Limit Sell
         limit_sell_dropdown_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/div[2]/div[2]/select/option[2]'
         self.driver.find_element_by_xpath(limit_sell_dropdown_xpath).click()
-        sleep(1)
+        self.driver.implicitly_wait(1)
 
         # Lowest Price Per Share You'd Sell
         lowest_pps_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/div[3]/div/div/input'
         self.driver.find_element_by_xpath(lowest_pps_xpath).send_keys(
             self.sell_price)
-        sleep(1)
+        self.driver.implicitly_wait(1)
 
         # How many Shares
         shares_quantity_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div[2]/input'
         self.driver.find_element_by_xpath(shares_quantity_xpath).send_keys(
             self.current_shares)
-        sleep(4)
+        self.driver.implicitly_wait(4)
 
         # Scroll to bottom script
         # This needs to execute becuase entire page doesn't load properly, must scroll down to activate some elements of the page.
         self.driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
-        sleep(3)
+        self.driver.implicitly_wait(3)
 
         # Sell Stock
         sell_stock_button_xpath = '/html/body/div[1]/ws-card-loading-indicator/div/div/div/div/ng-transclude/div/div/layout/div/main/ws-trade-component/ws-micro-app-loader/routes/span/span/div[3]/div/div[2]/div/div/div/div/div[2]/div/button'
         self.driver.find_element_by_xpath(sell_stock_button_xpath).click()
-        sleep(8)
+        self.driver.implicitly_wait(8)
 
         place_order_button_xpath = '/html/body/span/div/div/div[2]/div/div[4]/div/button[1]'
         self.driver.find_element_by_xpath(place_order_button_xpath).click()
 
-        sleep(8)
+        self.driver.implicitly_wait(8)
         # view_order_status_xpath = '/html/body/span/div/div/div[2]/div/button[2]'
         # self.driver.find_element_by_xpath(view_order_status_xpath).click()
 
@@ -416,7 +414,8 @@ class ws_bot():
             if pending_text != 'Pending':
                 pending_trigger = True
             else:
-                sleep(60)
+                # Maybe instead of self.driver.implicitly_wait, refresh the page or simulate a keystroke to fake user activity.
+                self.driver.implicitly_wait(60)
 
     def ws_override(self):
         override_input = input("Enable override? (y/n) ")
@@ -430,7 +429,7 @@ class ws_bot():
 
 bot = ws_bot()
 # bot.login()
-# sleep(4)
+# self.driver.implicitly_wait(4)
 # bot.get_stock()
 
 # # Do specific checks (holdings, current_shares) automate process?
