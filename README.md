@@ -72,7 +72,7 @@ Template provided by othneildrew/Best-README-Template
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.  
 
 - [Python](https://www.python.org/downloads/)
 
@@ -99,14 +99,14 @@ This is an example of how to list things you need to use the software and how to
    ```
 2. Install NPM packages
    ```sh
-   npm install requirements.txt
+   pip install requirements.txt
    ```
 3. Enter your account details in `.ENV`
 4. Run main.py in interactive
 
-```sh
-python -i main.py
-```
+  ```sh
+  python -i main.py
+  ```
 
 <!-- USAGE EXAMPLES -->
 
