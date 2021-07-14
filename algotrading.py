@@ -13,9 +13,9 @@ ma_2 = 100
 start = dt.datetime.now() - dt.timedelta(days=365*2)
 end = dt.datetime.now()
 
-data = yf.Ticker('GME')
+data = yf.download('MSFT')
 # pp.pprint(data.history(start=start, end=end))
-data = data.history(start=start, end=end)
+# data = data.history(start=start, end=end) 
 
 
 data[f'SMA_{ma_1}'] = data['Close'].rolling(window=ma_1).mean()
